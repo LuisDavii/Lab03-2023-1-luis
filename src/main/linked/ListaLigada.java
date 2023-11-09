@@ -85,11 +85,13 @@ public class ListaLigada implements EstruturaElementar{
         if(cabeca==null){
             cabeca = new No(valor);
         }
+        else{
         No n = cabeca;
-        while (n!=null) {
+        while (n.getProximo()!=null) {
             n=n.getProximo();
         }
-        n=new No(valor);
+        n.setProximo(new No(valor));
+    }
     }
 
     @Override
