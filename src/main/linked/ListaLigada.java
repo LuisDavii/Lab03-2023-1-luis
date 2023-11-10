@@ -33,26 +33,38 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public int minimo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'minimo'");
+        int c = Integer.MAX_VALUE;
+        No n = this.cabeca;
+        while(n!=null){
+            if(c>n.getValor()){
+                c=n.getValor();
+            }
+            n=n.getProximo();
+        }
+        return c;
     }
 
     @Override
     public int maximo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'maximo'");
+        int c = Integer.MIN_VALUE;
+        No n = this.cabeca;
+        while(n!=null){
+            if(c<n.getValor()){
+                c=n.getValor();
+            }
+            n=n.getProximo();
+        }
+        return c;
     }
 
     @Override
     public int predecessor(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'predecessor'");
+        return buscaIndice(valor-1);
     }
 
     @Override
     public int sucessor(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'sucessor'");
+       return buscaIndice(valor+1);
     }
 
     @Override
