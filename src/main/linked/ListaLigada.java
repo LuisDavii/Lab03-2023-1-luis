@@ -69,14 +69,32 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void insereElemento(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereElemento'");
+        if(cabeca==null){
+            cabeca = new No(valor);
+        }
+        else{
+        No n = cabeca;
+        while (n.getProximo()!=null) {
+            n=n.getProximo();
+        }
+        n.setProximo(new No(valor));
+    }
     }
 
     @Override
     public void insereElementoPosicao(int valor, int buscaIndice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'insereElementoPosicao'");
+        if(cabeca==null){
+            cabeca = new No(valor);
+        }
+        else{
+            No n = cabeca;
+            for(int i = 0;i<buscaIndice-1;i++){
+                n=n.getProximo();
+            }
+            No v = n.getProximo();
+            n.setProximo(new No(valor));
+            n.getProximo().setProximo(v);
+        }
     }
 
     @Override
@@ -108,26 +126,51 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void remove(int valor) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'remove'");
+        if(buscaElemento(valor)){
+            No n = cabeca;
+            if(n.getValor()==valor){
+                cabeca=n.getProximo();
+            }
+            else{
+            while(n!=null){
+                if(n.getProximo().getValor()==valor){
+                    n.setProximo(n.getProximo().getProximo());
+                    break;
+                }
+                n=n.getProximo();
+            }}
+        }
+        else{}
     }
 
     @Override
     public void removeIndice(int indice) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeIndice'");
+        No n = this.cabeca;
+        for(int i=0;i<indice-1;i++){
+            n=n.getProximo(); 
+        }
+        n.setProximo(n.getProximo().getProximo());
+
+        
     }
 
     @Override
     public void removeInicio() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeInicio'");
+        if(cabeca==null){}
+        else{
+            cabeca=cabeca.getProximo();
+        }
     }
 
     @Override
     public void removeFim() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'removeFim'");
+        if(cabeca==null){}
+        else{
+        No n = cabeca;
+        while (n.getProximo().getProximo()!=null) {
+            n=n.getProximo();
+        }
+        n.setProximo(null);
+        }
     }
-    
 }
