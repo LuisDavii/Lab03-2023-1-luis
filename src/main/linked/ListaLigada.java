@@ -86,11 +86,15 @@ public class ListaLigada implements EstruturaElementar{
         if(cabeca==null){
             cabeca = new No(valor);
         }
+        else if(buscaIndice==0){
+            insereInicio(valor);
+        }
         else{
             No n = cabeca;
             for(int i = 0;i<buscaIndice-1;i++){
                 n=n.getProximo();
             }
+            
             No v = n.getProximo();
             n.setProximo(new No(valor));
             n.getProximo().setProximo(v);
@@ -145,11 +149,14 @@ public class ListaLigada implements EstruturaElementar{
 
     @Override
     public void removeIndice(int indice) {
-        No n = this.cabeca;
+        if(indice==0){
+            removeInicio();
+        }
+        else{No n = this.cabeca;
         for(int i=0;i<indice-1;i++){
             n=n.getProximo(); 
         }
-        n.setProximo(n.getProximo().getProximo());
+        n.setProximo(n.getProximo().getProximo());}
 
         
     }
